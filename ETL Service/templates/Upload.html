@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>CSV Uploading Service </title>
+	<title>Uploading Service </title>
 	<style>
 		body {
 			font-family: Arial, sans-serif;
@@ -38,9 +38,9 @@
 	</style>
 </head>
 <body>
-	<form action="/csvUploader" method="POST" enctype="multipart/form-data">
-		<label for="input-field">Please Choose A valid CSV File </label>
-		<input type="file" name="file" accept=".csv">
+	<form action="/Uploader" method="POST" enctype="multipart/form-data">
+		<label for="input-field">Please Choose A valid File </label>
+		<input type="file" name="file" accept=".csv,.xml,.json">
 		<button type="submit">Submit</button>
 	</form>
 </body>
