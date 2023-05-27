@@ -19,7 +19,7 @@ def read_file(file):
         return pd.read_csv(file).to_json(orient='records')
     return file.read()
 
-
+# posting the file to the upload service
 def post_file():
     if 'file' not in request.files:
         flash("NO File Selected !!")
