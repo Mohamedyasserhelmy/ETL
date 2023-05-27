@@ -6,4 +6,4 @@ def index():
 
 
 def Parser():
-    return render_template("Upload/Upload.html")
+    return render_template("upload/Upload.html")

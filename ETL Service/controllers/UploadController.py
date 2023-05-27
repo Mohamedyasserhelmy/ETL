@@ -35,9 +35,9 @@ def post_file():
         print(type(data_to_json[0]))
         print(data_to_json[0])
         if (data_to_json[0] != 91) and (data_to_json[0] != "["):
-            return render_template("Upload/incorrectfile.html")
+            return render_template("upload/incorrectfile.html")
         data_to_json = json.loads(data_to_json)
         file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
         print(type(data_to_json))
-        return render_template("Upload/data.html", data=data_to_json, file_name=filename)
+        return render_template("upload/data.html", data=data_to_json, file_name=filename)
     return Response("Please Enter A valid Data !! ")
