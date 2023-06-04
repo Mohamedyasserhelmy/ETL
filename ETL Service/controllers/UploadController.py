@@ -5,6 +5,7 @@ import pandas as pd
 from werkzeug.utils import secure_filename
 import os
 import json
+from controllers.TransformationController import *
 
 # Checking if the type is allowed 
 def allowed_file(filename):
@@ -17,7 +18,7 @@ def read_file(file):
     file_extension = file.filename.rsplit('.', 1)[1].lower()
     if (file_extension == 'xml'):
         return pd.read_xml(file.read()).to_json(orient='records')
-    elif (file_extension == 'csv'):
+    elif (file_extension == 'csv' ):
         return pd.read_csv(file).to_json(orient='records')
     return file.read()
 
@@ -32,12 +33,15 @@ def post_file():
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         data_to_json = read_file(file)
-        print(type(data_to_json[0]))
-        print(data_to_json[0])
+        #print(type(data_to_json[0]))
+        #print(data_to_json)
         if (data_to_json[0] != 91) and (data_to_json[0] != "["):
             return render_template("upload/incorrectfile.html")
         data_to_json = json.loads(data_to_json)
         file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
-        print(type(data_to_json))
-        return render_template("upload/data.html", data=data_to_json, file_name=filename)
+        #print(type(data_to_json))
+        object = TransformationController()
+        list_json = object.return_list(data_to_json)
+        #print(list_json)
+        return render_template("upload/data.html", data=list_json, file_name=filename)
     return Response("Please Enter A valid Data !! ")

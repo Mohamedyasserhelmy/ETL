@@ -5,6 +5,7 @@ from controllers.mainController import *
 from controllers.UploadController import *
 from flask_cors import CORS
 
+
 app = Flask(__name__)
 CORS(app)
 blueprint = Blueprint('blueprint', __name__)
